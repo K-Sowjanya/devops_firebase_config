@@ -2,8 +2,7 @@ pipeline {
     agent any
     
     environment {
-		mavenHome = tool 'M2_HOME'
-		PATH = "$mavenHome/bin:$PATH"
+		mavenTool = 'Maven 3.9.4'
 	}
     stages {
         stage('Checkout code') {
@@ -19,10 +18,10 @@ pipeline {
         }
         
         stage('Build with Maven') {
-            steps {
-		tool name: mavenHome, type: 'PATH'
-                sh "${tool(name: mavenHome, type: 'PATH')}/bin/mvn -B clean compile package --file token/pom.xml"            
-	    }
+           steps {
+                tool name: mavenTool, type: 'hudson.tasks.Maven$MavenInstallation'
+                sh "${tool(name: mavenTool, type: 'hudson.tasks.Maven$MavenInstallation')}/bin/mvn -B clean compile package --file token/pom.xml"
+            }
         }
         
         stage('Store artifact') {
