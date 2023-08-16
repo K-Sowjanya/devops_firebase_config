@@ -4,6 +4,7 @@ pipeline {
     environment {
 		mavenHome = tool 'M2_HOME'
 		PATH = "$mavenHome/bin:$PATH"
+	    	type = 'hudson.tasks.Maven$MavenInstallation'
 	}
     stages {
         stage('Checkout code') {
