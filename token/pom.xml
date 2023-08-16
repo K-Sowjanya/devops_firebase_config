@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.firebase.template</groupId>
-	<artifactId>devops firebase</artifactId>
+	<artifactId>DevopsFirebase</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>devops firebase</name>
+	<name>DevopsFirebase</name>
 	<description>Demo project for devops firebase</description>
 
 	<properties>
