@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-		mavenHome = tool 'myMaven'
+		mavenHome = tool 'M2_HOME'
 		PATH = "$mavenHome/bin:$PATH"
 	}
     stages {
