@@ -20,7 +20,7 @@ pipeline {
         
         stage('Build with Maven') {
             steps {
-                sh 'mvn -B compile package --file token/pom.xml'
+                sh "${tool(name: 'M2_HOME', type: 'hudson.tasks.Maven$MavenInstallation')}/bin/mvn -B compile package --file token/pom.xml"
             }
         }
         
