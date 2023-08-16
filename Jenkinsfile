@@ -40,10 +40,7 @@ pipeline {
         stage('Commit and push artifact') {
             steps {
                 script {
-                    def gitUsername = 'K-Sowjanya'
-                    gitUserName(gitUsername)
-                    gitUserEmail("${gitUsername}@titan.co.in")
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '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', url: 'https://github.com/K-Sowjanya/devops_firebase_config.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gittoken', url: 'https://github.com/K-Sowjanya/devops_firebase_config.git']]])
                     bat 'git add artifacts/'
                     bat 'git commit -m "Add built artifact"'
                     bat 'git push origin HEAD:refs/heads/main'
