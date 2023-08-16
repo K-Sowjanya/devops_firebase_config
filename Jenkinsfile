@@ -33,7 +33,7 @@ pipeline {
 
        stage('Store artifact') {
             steps {
-                bat 'copy token/target/*.jar artifacts/'
+                bat 'copy "token/target/*.jar" "artifacts/"'
             }
         }
 
