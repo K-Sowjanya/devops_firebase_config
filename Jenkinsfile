@@ -31,9 +31,9 @@ pipeline {
             }
         }
 
-        stage('Archive Artifacts') {
+       stage('Store artifact') {
             steps {
-                archiveArtifacts artifacts: 'token/target/Firebase-0.0.1-SNAPSHOT.jar', allowEmptyArchive: true
+                bat 'copy token/target/*.jar artifacts/'
             }
         }
 
