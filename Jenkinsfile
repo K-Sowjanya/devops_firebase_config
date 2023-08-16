@@ -37,6 +37,20 @@ pipeline {
             }
         }
 
+        stage('Commit and push artifact') {
+            steps {
+                script {
+                    def gitActor = env.GITHUB_ACTOR
+                    gitUserName(gitActor)
+                    gitUserEmail("${gitActor}@users.noreply.github.com")
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: GIT_CREDENTIALS, url: REPO_URL]]])
+                    bat "git add %ARTIFACT_DIR%\\"
+                    bat "git commit -m \"${COMMIT_MESSAGE}\""
+                    bat "git push origin HEAD:refs/heads/main"
+                }
+            }
+        }
+
         stage('Compile and Run Java Program') {
             steps {
                 script{
