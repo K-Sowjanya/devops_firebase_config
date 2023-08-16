@@ -44,7 +44,7 @@ pipeline {
         stage('Compile and Run Java Program') {
             steps {
                 script{
-                def javaCmd = "${tool(name: 'JDK11', type: 'jdk')}/bin/java"
+                def javaCmd = "${tool(name: 'JDK 17', type: 'jdk')}/bin/java"
                 bat "\"${javaCmd}\" Firebase-0.0.1-SNAPSHOT.jar java.com.google.firebase.samples.config.TemplateConfigure"
                 }
             }
