@@ -20,7 +20,7 @@ pipeline {
         
         stage('Build with Maven') {
             steps {
-                sh 'mvn -B package --file token/pom.xml'
+                sh 'mvn -B compile package --file token/pom.xml'
             }
         }
         
