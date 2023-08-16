@@ -43,7 +43,7 @@ pipeline {
                     def gitUsername = 'K-Sowjanya'
                     gitUserName(gitUsername)
                     gitUserEmail("${gitUsername}@titan.co.in")
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'YOUR_CREDENTIALS_ID', url: 'YOUR_GITHUB_REPO_URL']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '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', url: 'https://github.com/K-Sowjanya/devops_firebase_config.git']]])
                     bat 'git add artifacts/'
                     bat 'git commit -m "Add built artifact"'
                     bat 'git push origin HEAD:refs/heads/main'
