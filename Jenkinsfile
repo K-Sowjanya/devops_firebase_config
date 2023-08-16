@@ -20,8 +20,9 @@ pipeline {
         
         stage('Build with Maven') {
             steps {
-		tool name: mavenHome, type: 'hudson.tasks.Maven$MavenInstallation'
-                sh "${tool(name: mavenHome, type: 'D:\apache-maven-3.9.4')}/bin/mvn -B clean compile package --file token/pom.xml"            }
+		tool name: mavenHome, type: 'PATH'
+                sh "${tool(name: mavenHome, type: 'PATH')}/bin/mvn -B clean compile package --file token/pom.xml"            
+	    }
         }
         
         stage('Store artifact') {
