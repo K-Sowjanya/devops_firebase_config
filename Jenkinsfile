@@ -20,7 +20,7 @@ pipeline {
         
         stage('Build with Maven') {
             steps {
-                sh "${tool(name: 'M2_HOME', type: 'mvn')}/bin/mvn -B compile package --file token/pom.xml"
+                sh 'mvn -B clean compile package --file token/pom.xml'
             }
         }
         
