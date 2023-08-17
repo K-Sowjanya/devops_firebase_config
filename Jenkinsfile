@@ -37,16 +37,16 @@ pipeline {
             }
         }
 
-        stage('Commit and push artifact') {
-            steps {
-                script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gittoken', url: 'https://github.com/K-Sowjanya/devops_firebase_config.git']]])
-                    bat 'git add artifacts/'
-                    bat 'git commit -m "Add built artifact"'
-                    bat 'git push origin HEAD:refs/heads/main'
-                }
-            }
-        }
+        // stage('Commit and push artifact') {
+        //     steps {
+        //         script {
+        //             checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'f7c6abff-a599-4765-937d-0c9e7009bebd', url: 'https://github.com/K-Sowjanya/devops_firebase_config.git']]])
+        //             bat 'git add artifacts/'
+        //             bat 'git commit -m "Add built artifact"'
+        //             bat 'git push origin HEAD:refs/heads/main'
+        //         }
+        //     }
+        // }
         stage('Compile and Run Java Program') {
             steps {
                 script{
