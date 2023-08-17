@@ -38,19 +38,23 @@ pipeline {
         }
 
         stage('Commit and push artifact') {
+            environment {
+            GIT_REPO_NAME = "devops_firebase_config"
+            GIT_USER_NAME = "K-Sowjanya"
+        }
             steps {
                 script {
-                     def gitUsername = 'K-Sowjanya'
-                     def artifactPath = 'target/*.jar'
-
-                    env.GIT_AUTHOR_NAME = gitUsername
-                    env.GIT_COMMITTER_NAME = gitUsername
-                    
-                    bat "git config --global user.name '${gitUsername}'"
-                    
-                    bat "git add \"${artifactPath}\"" 
-                    bat "git commit -m 'Add built artifact'"
-                    bat "git push ${env.gittoken} HEAD:refs/heads/main"
+                   withCredentials([string(credentialsId: 'gittoken', variable: 'GITHUB_TOKEN')]) {
+                bat '''
+                    git config user.email "konudulasowjanya13@titan.co.in"
+                    git config user.name "K-Sowjanya"
+                    git add artifacts/.
+                    git commit -m "Update deployment image to version"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+                }
+            }
+        }
                 }
             }
         }
