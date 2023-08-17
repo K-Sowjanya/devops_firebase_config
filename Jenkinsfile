@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
- 
-
     environment {
         mavenTool = 'Maven 3.9.4'
     }
@@ -14,15 +12,11 @@ pipeline {
             }
         }
 
- 
-
         stage('Set up JDK') {
             steps {
                 tool name: 'JDK 17', type: 'jdk'
             }
         }
-
- 
 
         stage('Build with Maven') {
             steps {
@@ -31,7 +25,7 @@ pipeline {
             }
         }
 
-       stage('Store artifact') {
+        stage('Store artifact') {
             steps {
                 bat 'copy "token\\target\\*.jar" "artifacts\\"'
             }
@@ -39,30 +33,29 @@ pipeline {
 
         stage('Commit and push artifact') {
             environment {
-            GIT_REPO_NAME = "devops_firebase_config"
-            GIT_USER_NAME = "K-Sowjanya"
-        }
+                GIT_REPO_NAME = 'devops_firebase_config'
+                GIT_USER_NAME = 'K-Sowjanya'
+            }
             steps {
                 script {
-                   withCredentials([string(credentialsId: 'gittoken', variable: 'GITHUB_TOKEN')]) {
-                bat '''
+                    withCredentials([string(credentialsId: 'gittoken', variable: 'GITHUB_TOKEN')]) {
+                        bat '''
                     git config user.email "konudulasowjanya13@titan.co.in"
                     git config user.name "K-Sowjanya"
                     git add artifacts/.
                     git commit -m "Update deployment image to version"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
+                    }
                 }
             }
         }
-                }
-            }
-        }
+
         stage('Compile and Run Java Program') {
             steps {
-                script{
-                def javaCmd = "${tool(name: 'JDK 17', type: 'jdk')}/bin/java"
-                bat "\"${javaCmd}\" Firebase-0.0.1-SNAPSHOT.jar java.com.google.firebase.samples.config.TemplateConfigure"
+                script {
+                    def javaCmd = "${tool(name: 'JDK 17', type: 'jdk')}/bin/java"
+                    bat "\"${javaCmd}\" Firebase-0.0.1-SNAPSHOT.jar java.com.google.firebase.samples.config.TemplateConfigure"
                 }
             }
         }
