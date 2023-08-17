@@ -46,11 +46,11 @@ pipeline {
                     env.GIT_AUTHOR_NAME = gitUsername
                     env.GIT_COMMITTER_NAME = gitUsername
                     
-                    sh "git config --global user.name '${gitUsername}'"
+                    bat "git config --global user.name '${gitUsername}'"
                     
-                    sh "git add ${artifactPath}"
-                    sh "git commit -m 'Add built artifact'"
-                    sh "git push ${env.gittoken} HEAD:refs/heads/main"
+                    bat "git add ${artifactPath}"
+                    bat "git commit -m 'Add built artifact'"
+                    bat "git push ${env.gittoken} HEAD:refs/heads/main"
                 }
             }
         }
