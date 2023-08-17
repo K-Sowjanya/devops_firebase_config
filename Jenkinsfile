@@ -41,13 +41,14 @@ pipeline {
             steps {
                 script {
                      def gitUsername = 'K-Sowjanya'
-                    
+                     def artifactPath = 'target/*.jar'
+
                     env.GIT_AUTHOR_NAME = gitUsername
                     env.GIT_COMMITTER_NAME = gitUsername
                     
                     bat "git config --global user.name '${gitUsername}'"
                     
-                    bat "git add artifacts/"
+                    bat "git add \"${artifactPath}\"" 
                     bat "git commit -m 'Add built artifact'"
                     bat "git push ${env.gittoken} HEAD:refs/heads/main"
                 }
