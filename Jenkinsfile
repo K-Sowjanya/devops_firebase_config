@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                      def gitUsername = 'K-Sowjanya'
-                    def artifactPath = "target/*.jar"
+                    def artifactPath = "artifacts/"
                     
                     env.GIT_AUTHOR_NAME = gitUsername
                     env.GIT_COMMITTER_NAME = gitUsername
