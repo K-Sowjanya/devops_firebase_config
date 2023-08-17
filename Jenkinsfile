@@ -33,7 +33,6 @@ pipeline {
 
        stage('Store artifact') {
             steps {
-                bat 'mkdir -p artifacts'
                 bat 'copy "token\\target\\*.jar" "artifacts\\"'
             }
         }
