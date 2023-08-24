@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         mavenTool = 'Maven 3.9.4'
-        gitRemoteUrl = 'https://github.com/shivanititan/Firebase-Remote.git'
+        gitRemoteUrl = 'https://github.com/K-Sowjanya/devops_firebase_config.git'
     }
 
     stages {
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     def javaCmd = "${tool(name: 'JDK 17', type: 'jdk')}/bin/java"
-                    bat "\"${javaCmd}\" -cp \"C:/ProgramData/Jenkins/.jenkins/workspace/firebase-config/Firebase-Remote/target/Firebase-1.0-SNAPSHOT.jar\" com.example.Main"
+                    bat "\"${javaCmd}\" -cp \"C:/Program Files/Jenkins/.jenkins/workspace/firebase-config/Firebase-Remote/target/Firebase-1.0-SNAPSHOT.jar\" com.example.Main"
                 }
             }
         }
