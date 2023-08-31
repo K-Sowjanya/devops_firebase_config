@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     def javaCmd = "${tool(name: 'JDK 17', type: 'jdk')}/bin/java"
-                    bat "\"${javaCmd}\" -cp \"C:\ProgramData\Jenkins\.jenkins\workspace\Firebase_Pipeline\target\Firebase-1.0-SNAPSHOT.jar\" com.example.Main"
+                    bat "\"${javaCmd}\" -cp \"C:\ProgramData\Jenkins\.jenkins\workspace\Firebase_Pipeline\target\Firebase-1.0-SNAPSHOT.jar/" com.example.Main"
                 }
             }
         }
